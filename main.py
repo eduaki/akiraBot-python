@@ -52,6 +52,11 @@ async def d20(interaction: Interaction):
     d20res = random.randint(1, 20)
     await interaction.response.send_message(f'{interaction.user.mention}\n:game_die: você lançou um dado de 20 lados! :game_die: \n\n**Resultado:** `{d20res}`', ephemeral=False)
 
+@tree.command(guild=discord.Object(id=serverId), name='d100', description='Lança um dado de 100 lados.')
+async def d100(interaction: Interaction):
+    d100res = random.randint(1, 100)
+    await interaction.response.send_message(f'{interaction.user.mention}\n:game_die: você lançou um dado de 100 lados! :game_die: \n\n**Resultado:** `{d100res}`', ephemeral=False)
+
 @tree.command(guild=discord.Object(id=serverId), name='dados', description='Mostra os dados de RPG e como faz para lançar cada um deles.')
 async def dados(interaction: Interaction):
     embedDados = discord.Embed(
@@ -61,6 +66,7 @@ async def dados(interaction: Interaction):
     )
     embedDados.add_field(name='d6', value='digitando `/d6` é lançado um dado de 6 lados, serve para ações simples, raramente é usado em momentos importantes.', inline=True)
     embedDados.add_field(name='d20', value='digitando `/d20` é lançado um dado de 20 lados, que serve para ações com um grau de importância maior, como aparecimento de monstros, esquiva de ataques, aprender algo novo, etc...', inline=True)
+    embedDados.add_field(name='d100', value='digitando `/d100` é lançado um dado de 100 lados, que serve basicamente para porcentagens, pegar itens, força do ataque, quantidade de dano amortecida, etc...', inline=False)
 
     await interaction.response.send_message(f'{interaction.user.mention} aqui está o que pediu:', ephemeral=False)
     await interaction.channel.send(embed=embedDados)
